@@ -11,8 +11,8 @@ const style = {
   padding: '15px'
 };
 
-class CompletedTask extends React.Component {
-  _milliSecToHhmmssms(milliSeconds) {
+const CompletedTask = props => {
+  const milliSecToHhmmssms = milliSeconds => {
     const hour = Math.floor(milliSeconds / (60 * 60 * 1000));
     const minute = Math.floor((milliSeconds % (60 * 60 * 1000)) / (60 * 1000));
     const second = Math.floor((milliSeconds % (60 * 1000)) / 1000);
@@ -25,36 +25,34 @@ class CompletedTask extends React.Component {
 
     const formatedTime = `${hh}:${mm}:${ss}.${ms}`;
     return formatedTime;
-  }
+  };
 
-  render() {
-    return (
-      <div className="Task" style={style}>
-        <div>{this.props.task.title}</div>
-        <div>{this._milliSecToHhmmssms(this.props.task.elapsedTime)}</div>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            this.props.undone(this.props.task);
-          }}
-        >
-          Undone
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            this.props.delete(this.props.task);
-          }}
-        >
-          Delete
-        </Button>
-        <div>{this.props.task.note}</div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Task" style={style}>
+      <div>{props.task.title}</div>
+      <div>{milliSecToHhmmssms(props.task.elapsedTime)}</div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          props.undone(props.task);
+        }}
+      >
+        Undone
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          props.delete(props.task);
+        }}
+      >
+        Delete
+      </Button>
+      <div>{props.task.note}</div>
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return state.completedTask;
