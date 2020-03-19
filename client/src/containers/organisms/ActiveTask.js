@@ -1,12 +1,27 @@
 'use strict';
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { activeTaskModule } from '../../modules/activeTaskModule';
 import { TASK_STATUS } from '../../const';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
+
+const propTypes = {
+  task: PropTypes.object.isRequired,
+  tasks: PropTypes.array.isRequired,
+  isRunning: PropTypes.bool.isRequired,
+  timers: PropTypes.array.isRequired,
+  updateState: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  start: PropTypes.func.isRequired,
+  pause: PropTypes.func.isRequired,
+  done: PropTypes.func.isRequired,
+  copy: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired
+};
 
 const Div = styled.div`
   border: solid 2px;
@@ -174,6 +189,8 @@ const ActiveTask = props => {
     </Div>
   );
 };
+
+ActiveTask.propTypes = propTypes;
 
 const mapStateToProps = state => {
   return state.activeTask;

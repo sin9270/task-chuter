@@ -1,11 +1,17 @@
 'use strict';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+
+const propTypes = {
+  initialTab: PropTypes.string.isRequired,
+  push: PropTypes.func.isRequired
+};
 
 const Header = props => {
   const [value, setValue] = React.useState(props.initialTab);
@@ -40,6 +46,8 @@ const Header = props => {
     </div>
   );
 };
+
+Header.propTypes = propTypes;
 
 const mapDispatchToProps = { push };
 

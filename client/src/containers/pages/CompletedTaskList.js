@@ -1,12 +1,20 @@
 'use strict';
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { completedTaskModule } from '../../modules/completedTaskModule';
 import { LOG_STATUS } from '../../const';
 import Header from '../organisms/header.js';
 import CompletedTask from '../organisms/CompletedTask';
 import Button from '@material-ui/core/Button';
+
+const propTypes = {
+  tasks: PropTypes.array.isRequired,
+  lastLog: PropTypes.object.isRequired,
+  load: PropTypes.func.isRequired,
+  undo: PropTypes.func.isRequired
+};
 
 const CompletedTaskList = props => {
   useEffect(() => {
@@ -38,6 +46,8 @@ const CompletedTaskList = props => {
     </div>
   );
 };
+
+CompletedTaskList.propTypes = propTypes;
 
 const mapStateToProps = state => {
   return state.completedTask;
