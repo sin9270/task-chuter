@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { activeTaskModule } from '../../modules/activeTaskModule';
 import { TASK_STATUS } from '../../const';
@@ -15,33 +15,23 @@ const Div = styled.div`
   padding: 15px;
 `;
 
-class ActiveTask extends React.Component {
-  componentDidMount() {
-    if (this.props.task.status === TASK_STATUS.RUNNING) {
-      this.start();
-    }
-  }
-
-  componentWillUnMount() {
-    this.stop();
-  }
-
-  start() {
+const ActiveTask = props => {
+  const start = () => {
     const callback = () => {
-      this.props.update(this.props.task);
+      props.update(props.task);
     };
     const timer = setInterval(callback, 1000);
-    this.props.updateState({ timers: [...this.props.timers, timer] });
-  }
+    props.updateState({ timers: [...props.timers, timer] });
+  };
 
-  stop() {
-    this.props.timers.forEach(timer => {
+  const stop = () => {
+    props.timers.forEach(timer => {
       clearInterval(timer);
     });
-    this.props.updateState({ timers: [] });
-  }
+    props.updateState({ timers: [] });
+  };
 
-  _milliSecToHhmmssms(milliSeconds) {
+  const milliSecToHhmmssms = milliSeconds => {
     const hour = Math.floor(milliSeconds / (60 * 60 * 1000));
     const minute = Math.floor((milliSeconds % (60 * 60 * 1000)) / (60 * 1000));
     const second = Math.floor((milliSeconds % (60 * 1000)) / 1000);
@@ -54,131 +44,136 @@ class ActiveTask extends React.Component {
 
     const formatedTime = `${hh}:${mm}:${ss}.${ms}`;
     return formatedTime;
-  }
+  };
 
-  render() {
-    return (
-      <Div isRunning={this.props.task.status === TASK_STATUS.RUNNING}>
-        <TextField
-          id="standard-basic"
-          label="Task Name"
-          margin="normal"
-          required
-          // task作成直後にフォーカスを当てる
-          autoFocus={this.props.task.status === TASK_STATUS.CREATED}
-          defaultValue={this.props.task.title}
-          onKeyPress={e => {
-            // エンターキーが押された時にフォーカスを外す
-            if (e.key === 'Enter') {
-              e.target.blur();
-            }
-          }}
-          onBlur={e => {
-            let newTitle = e.target.value;
-            if (!e.target.value) {
-              newTitle = this.props.task.title;
-            }
-            this.props.update({
-              ...this.props.task,
-              title: newTitle
-            });
-          }}
-        />
-        <div>{this._milliSecToHhmmssms(this.props.task.elapsedTime)}</div>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={
-            ![
-              TASK_STATUS.CREATED,
-              TASK_STATUS.UPDATED,
-              TASK_STATUS.PAUSED
-            ].includes(this.props.task.status)
+  useEffect(() => {
+    if (props.task.status === TASK_STATUS.RUNNING) {
+      start();
+    }
+    return () => stop();
+  }, [props.task.status]);
+
+  return (
+    <Div isRunning={props.task.status === TASK_STATUS.RUNNING}>
+      <TextField
+        id="standard-basic"
+        label="Task Name"
+        margin="normal"
+        required
+        // task作成直後にフォーカスを当てる
+        autoFocus={props.task.status === TASK_STATUS.CREATED}
+        defaultValue={props.task.title}
+        onKeyPress={e => {
+          // エンターキーが押された時にフォーカスを外す
+          if (e.key === 'Enter') {
+            e.target.blur();
           }
-          onClick={() => {
-            this.props.start(this.props.tasks, this.props.task);
-            this.stop();
-            this.start();
-          }}
-        >
-          Start
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={this.props.task.status !== TASK_STATUS.RUNNING}
-          onClick={() => {
-            this.props.pause(this.props.task);
-            this.stop();
-          }}
-        >
-          Pause
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            this.props.done(this.props.task);
-            this.stop();
-          }}
-        >
-          Done
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            this.props.copy(this.props.tasks, this.props.task);
-          }}
-        >
-          Copy
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            this.props.copy(this.props.tasks, this.props.task);
-            this.props.done(this.props.task);
-            this.stop();
-          }}
-        >
-          Copy and Done
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            this.props.delete(this.props.task);
-            this.stop();
-          }}
-        >
-          Delete
-        </Button>
-        <TextField
-          id="outlined-multiline-flexible"
-          label="Note"
-          multiline
-          rowsMax="4"
-          defaultValue={this.props.task.note}
-          margin="normal"
-          variant="outlined"
-          onKeyPress={e => {
-            // エンターキーが押された時にフォーカスを外す
-            if (e.key === 'Enter') {
-              e.target.blur();
-            }
-          }}
-          onBlur={e => {
-            this.props.update({
-              ...this.props.task,
-              note: e.target.value
-            });
-          }}
-        />
-      </Div>
-    );
-  }
-}
+        }}
+        onBlur={e => {
+          let newTitle = e.target.value;
+          if (!e.target.value) {
+            newTitle = props.task.title;
+          }
+          props.update({
+            ...props.task,
+            title: newTitle
+          });
+        }}
+      />
+      <div>{milliSecToHhmmssms(props.task.elapsedTime)}</div>
+      <Button
+        variant="contained"
+        color="primary"
+        disabled={
+          ![
+            TASK_STATUS.CREATED,
+            TASK_STATUS.UPDATED,
+            TASK_STATUS.PAUSED
+          ].includes(props.task.status)
+        }
+        onClick={() => {
+          props.start(props.tasks, props.task);
+          stop();
+          start();
+        }}
+      >
+        Start
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        disabled={props.task.status !== TASK_STATUS.RUNNING}
+        onClick={() => {
+          props.pause(props.task);
+          stop();
+        }}
+      >
+        Pause
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          props.done(props.task);
+          stop();
+        }}
+      >
+        Done
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          props.copy(props.tasks, props.task);
+        }}
+      >
+        Copy
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          props.copy(props.tasks, props.task);
+          props.done(props.task);
+          stop();
+        }}
+      >
+        Copy and Done
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          props.delete(props.task);
+          stop();
+        }}
+      >
+        Delete
+      </Button>
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Note"
+        multiline
+        rowsMax="4"
+        defaultValue={props.task.note}
+        margin="normal"
+        variant="outlined"
+        onKeyPress={e => {
+          // エンターキーが押された時にフォーカスを外す
+          if (e.key === 'Enter') {
+            e.target.blur();
+          }
+        }}
+        onBlur={e => {
+          props.update({
+            ...props.task,
+            note: e.target.value
+          });
+        }}
+      />
+    </Div>
+  );
+};
 
 const mapStateToProps = state => {
   return state.activeTask;
