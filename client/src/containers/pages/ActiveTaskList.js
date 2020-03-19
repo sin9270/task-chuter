@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { activeTaskModule } from '../../modules/activeTaskModule';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -9,6 +10,18 @@ import Header from '../organisms/header.js';
 import ActiveTask from '../organisms/ActiveTask';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+
+const propTypes = {
+  tasks: PropTypes.array.isRequired,
+  titleContains: PropTypes.string.isRequired,
+  noteContains: PropTypes.string.isRequired,
+  lastLog: PropTypes.object.isRequired,
+  updateState: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
+  reorder: PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  undo: PropTypes.func.isRequired
+};
 
 const style = {
   width: 600
@@ -108,6 +121,8 @@ const ActiveTaskList = props => {
     </div>
   );
 };
+
+ActiveTaskList.propTypes = propTypes;
 
 const mapStateToProps = state => {
   return state.activeTask;

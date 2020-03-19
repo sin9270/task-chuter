@@ -1,9 +1,16 @@
 'use strict';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { completedTaskModule } from '../../modules/completedTaskModule';
 import Button from '@material-ui/core/Button';
+
+const propTypes = {
+  task: PropTypes.object.isRequired,
+  undone: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired
+};
 
 const style = {
   borderRadius: 10,
@@ -53,6 +60,8 @@ const CompletedTask = props => {
     </div>
   );
 };
+
+CompletedTask.propTypes = propTypes;
 
 const mapStateToProps = state => {
   return state.completedTask;
