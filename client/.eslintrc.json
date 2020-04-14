@@ -5,7 +5,7 @@
     "commonjs": true,
     "es6": true
   },
-  "plugins": ["node", "react", "json", "html", "jest", "prettier"],
+  "plugins": ["node", "react", "json", "html", "jest", "prettier", "simple-import-sort"],
   "extends": [
     "eslint:recommended",
     "plugin:node/recommended",
@@ -34,7 +34,8 @@
       {
         "ignores": ["modules"]
       }
-    ]
+    ],
+    "simple-import-sort/sort": "error"
   },
   "settings": {
     "react": {
