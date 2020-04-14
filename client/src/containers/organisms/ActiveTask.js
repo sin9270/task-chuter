@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { activeTaskModule } from '../../modules/activeTaskModule';
 import { TASK_STATUS } from '../../const';
-import Button from '@material-ui/core/Button';
+import Button from '../atoms/Button';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 
@@ -97,8 +97,6 @@ const ActiveTask = props => {
       />
       <div>{milliSecToHhmmssms(props.task.elapsedTime)}</div>
       <Button
-        variant="contained"
-        color="primary"
         disabled={
           ![
             TASK_STATUS.CREATED,
@@ -115,8 +113,6 @@ const ActiveTask = props => {
         Start
       </Button>
       <Button
-        variant="contained"
-        color="primary"
         disabled={props.task.status !== TASK_STATUS.RUNNING}
         onClick={() => {
           props.pause(props.task);
@@ -126,8 +122,6 @@ const ActiveTask = props => {
         Pause
       </Button>
       <Button
-        variant="contained"
-        color="primary"
         onClick={() => {
           props.done(props.task);
           stop();
@@ -136,8 +130,6 @@ const ActiveTask = props => {
         Done
       </Button>
       <Button
-        variant="contained"
-        color="primary"
         onClick={() => {
           props.copy(props.tasks, props.task);
         }}
@@ -145,8 +137,6 @@ const ActiveTask = props => {
         Copy
       </Button>
       <Button
-        variant="contained"
-        color="primary"
         onClick={() => {
           props.copy(props.tasks, props.task);
           props.done(props.task);
@@ -156,8 +146,6 @@ const ActiveTask = props => {
         Copy and Done
       </Button>
       <Button
-        variant="contained"
-        color="primary"
         onClick={() => {
           props.delete(props.task);
           stop();

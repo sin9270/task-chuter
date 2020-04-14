@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { completedTaskModule } from '../../modules/completedTaskModule';
-import Button from '@material-ui/core/Button';
+import Button from '../atoms/Button';
 import styled from 'styled-components';
 
 const propTypes = {
@@ -41,8 +41,6 @@ const CompletedTask = props => {
       <div>{props.task.title}</div>
       <div>{milliSecToHhmmssms(props.task.elapsedTime)}</div>
       <Button
-        variant="contained"
-        color="primary"
         onClick={() => {
           props.undone(props.task);
         }}
@@ -50,8 +48,6 @@ const CompletedTask = props => {
         Undone
       </Button>
       <Button
-        variant="contained"
-        color="primary"
         onClick={() => {
           props.delete(props.task);
         }}
