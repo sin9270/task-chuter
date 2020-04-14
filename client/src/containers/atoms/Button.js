@@ -15,7 +15,7 @@ const StyledButton = styled(Button)`
 
 const MainButton = props => {
   return (
-    <StyledButton variant="contained" color="primary">
+    <StyledButton variant="contained" color="primary" {...props}>
       {props.children}
     </StyledButton>
   );
