@@ -1,13 +1,14 @@
 'use strict';
 
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
-import history from './history';
-import setupStore from './store';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
 import ActiveTaskList from './containers/pages/ActiveTaskList';
 import CompletedTaskList from './containers/pages/CompletedTaskList';
+import history from './history';
+import setupStore from './store';
 
 const store = setupStore();
 

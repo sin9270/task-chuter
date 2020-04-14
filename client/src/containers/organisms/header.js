@@ -1,12 +1,12 @@
 'use strict';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
 import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import { push } from 'connected-react-router';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
 
 const propTypes = {
   initialTab: PropTypes.string.isRequired,

@@ -1,8 +1,9 @@
 'use strict';
 
 import { createSlice } from 'redux-starter-kit';
+
+import { LOG_STATUS, TASK_STATUS } from '../const';
 import db from '../db';
-import { TASK_STATUS, LOG_STATUS } from '../const';
 import TaskModel from './TaskModel';
 
 const activeTaskSlice = createSlice({

@@ -1,11 +1,12 @@
 'use strict';
 
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
 import { completedTaskModule } from '../../modules/completedTaskModule';
 import Button from '../atoms/Button';
-import styled from 'styled-components';
 
 const propTypes = {
   task: PropTypes.object.isRequired,
