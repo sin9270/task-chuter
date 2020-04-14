@@ -38,11 +38,9 @@ const CompletedTaskList = props => {
           Undo
         </Button>
       )}
-      <ul>
-        {props.tasks.map(task => (
-          <CompletedTask key={task.id} task={task} />
-        ))}
-      </ul>
+      {props.tasks.map(task => (
+        <CompletedTask key={task.id} task={task} />
+      ))}
     </div>
   );
 };
