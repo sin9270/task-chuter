@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { completedTaskModule } from '../../modules/completedTaskModule';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 
 const propTypes = {
   task: PropTypes.object.isRequired,
@@ -12,11 +13,12 @@ const propTypes = {
   delete: PropTypes.func.isRequired
 };
 
-const style = {
-  borderRadius: 10,
-  border: 'solid 2px',
-  padding: '15px'
-};
+const Div = styled.div`
+  border: solid 2px;
+  border-color: black;
+  border-radius: 10px;
+  padding: 15px;
+`;
 
 const CompletedTask = props => {
   const milliSecToHhmmssms = milliSeconds => {
@@ -35,7 +37,7 @@ const CompletedTask = props => {
   };
 
   return (
-    <div className="Task" style={style}>
+    <Div>
       <div>{props.task.title}</div>
       <div>{milliSecToHhmmssms(props.task.elapsedTime)}</div>
       <Button
@@ -57,7 +59,7 @@ const CompletedTask = props => {
         Delete
       </Button>
       <div>{props.task.note}</div>
-    </div>
+    </Div>
   );
 };
 

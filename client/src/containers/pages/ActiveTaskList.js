@@ -23,10 +23,6 @@ const propTypes = {
   undo: PropTypes.func.isRequired
 };
 
-const style = {
-  width: 600
-};
-
 const ActiveTaskList = props => {
   useEffect(() => {
     props.load();
@@ -95,11 +91,7 @@ const ActiveTaskList = props => {
       <DragDropContext onDragEnd={result => onDragEnd(result)}>
         <Droppable droppableId="list">
           {provided => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              style={style}
-            >
+            <div {...provided.droppableProps} ref={provided.innerRef}>
               {tasks.map((task, index) => (
                 <Draggable key={task.id} draggableId={task.id} index={index}>
                   {provided => (
