@@ -1,13 +1,14 @@
 'use strict';
 
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { completedTaskModule } from '../../modules/completedTaskModule';
+
 import { LOG_STATUS } from '../../const';
-import Header from '../organisms/header.js';
-import CompletedTask from '../organisms/CompletedTask';
+import { completedTaskModule } from '../../modules/completedTaskModule';
 import Button from '../atoms/Button';
+import CompletedTask from '../organisms/CompletedTask';
+import Header from '../organisms/header.js';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,

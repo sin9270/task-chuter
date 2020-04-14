@@ -1,13 +1,14 @@
 'use strict';
 
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { activeTaskModule } from '../../modules/activeTaskModule';
-import { TASK_STATUS } from '../../const';
-import Button from '../atoms/Button';
 import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+
+import { TASK_STATUS } from '../../const';
+import { activeTaskModule } from '../../modules/activeTaskModule';
+import Button from '../atoms/Button';
 
 const propTypes = {
   task: PropTypes.object.isRequired,

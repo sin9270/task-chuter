@@ -1,15 +1,16 @@
 'use strict';
 
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { activeTaskModule } from '../../modules/activeTaskModule';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { LOG_STATUS } from '../../const';
-import Header from '../organisms/header.js';
-import ActiveTask from '../organisms/ActiveTask';
-import Button from '../atoms/Button';
 import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { connect } from 'react-redux';
+
+import { LOG_STATUS } from '../../const';
+import { activeTaskModule } from '../../modules/activeTaskModule';
+import Button from '../atoms/Button';
+import ActiveTask from '../organisms/ActiveTask';
+import Header from '../organisms/header.js';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,
