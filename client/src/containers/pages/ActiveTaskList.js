@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { LOG_STATUS } from '../../const';
 import Header from '../organisms/header.js';
 import ActiveTask from '../organisms/ActiveTask';
-import Button from '@material-ui/core/Button';
+import Button from '../atoms/Button';
 import TextField from '@material-ui/core/TextField';
 
 const propTypes = {
@@ -70,17 +70,9 @@ const ActiveTaskList = props => {
         type="search"
         onChange={e => props.updateState({ noteContains: e.target.value })}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => props.create(props.tasks)}
-      >
-        Create
-      </Button>
+      <Button onClick={() => props.create(props.tasks)}>Create</Button>
       {canUndo && (
         <Button
-          variant="contained"
-          color="primary"
           onClick={() => {
             props.undo(lastLog);
           }}

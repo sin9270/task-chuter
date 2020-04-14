@@ -7,7 +7,7 @@ import { completedTaskModule } from '../../modules/completedTaskModule';
 import { LOG_STATUS } from '../../const';
 import Header from '../organisms/header.js';
 import CompletedTask from '../organisms/CompletedTask';
-import Button from '@material-ui/core/Button';
+import Button from '../atoms/Button';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,
@@ -29,15 +29,7 @@ const CompletedTaskList = props => {
   return (
     <div>
       <Header initialTab="completedTaskList" />
-      {canUndo && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => props.undo(lastLog)}
-        >
-          Undo
-        </Button>
-      )}
+      {canUndo && <Button onClick={() => props.undo(lastLog)}>Undo</Button>}
       {props.tasks.map(task => (
         <CompletedTask key={task.id} task={task} />
       ))}
