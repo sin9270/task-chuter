@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.10",
+    "@material-ui/styles": "^4.9.10",
     "connected-react-router": "^6.8.0",
     "dexie": "^2.0.4",
     "easytimer.js": "^4.1.1",
@@ -70,6 +71,7 @@
     "react-beautiful-dnd": "^12.2.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-responsive": "^8.0.3",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
