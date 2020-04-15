@@ -8,7 +8,7 @@ import { LOG_STATUS } from '../../const';
 import { completedTaskModule } from '../../modules/completedTaskModule';
 import Button from '../atoms/Button';
 import CompletedTask from '../organisms/CompletedTask';
-import Header from '../organisms/header.js';
+import Header from '../organisms/header';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,
