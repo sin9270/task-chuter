@@ -15,8 +15,8 @@ const propTypes = {
 };
 
 const StyledTab = styled(Tab)`
-  height: 100px;
-  font-size: 30px;
+  height: 150px;
+  font-size: 50px;
 `;
 
 const Header = props => {

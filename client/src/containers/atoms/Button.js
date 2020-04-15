@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const StyledButton = styled(Button)`
-  margin: 15px;
+  margin: 5px;
 `;
 
 const MainButton = props => {
