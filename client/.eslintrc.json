@@ -5,7 +5,15 @@
     "commonjs": true,
     "es6": true
   },
-  "plugins": ["node", "react", "json", "html", "jest", "prettier", "simple-import-sort"],
+  "plugins": [
+    "node",
+    "react",
+    "json",
+    "html",
+    "jest",
+    "prettier",
+    "simple-import-sort"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:node/recommended",
@@ -33,6 +41,12 @@
       "error",
       {
         "ignores": ["modules"]
+      }
+    ],
+    "node/no-unpublished-import": [
+      "error",
+      {
+        "allowModules": ["enzyme", "enzyme-adapter-react-16"]
       }
     ],
     "simple-import-sort/sort": "error"
