@@ -15,8 +15,13 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": ""
+      "pre-push": "npm run test"
     }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ]
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const propTypes = {
-  children: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func.isRequired
 };
 
 const StyledButton = styled(Button)`
@@ -15,7 +17,12 @@ const StyledButton = styled(Button)`
 
 const MainButton = props => {
   return (
-    <StyledButton variant="contained" color="primary" {...props}>
+    <StyledButton
+      variant="contained"
+      color="primary"
+      disabled={props.disabled}
+      onClick={props.onClick}
+    >
       {props.children}
     </StyledButton>
   );
