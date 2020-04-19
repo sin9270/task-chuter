@@ -13,7 +13,7 @@ export default class TaskModel {
     elapsedTime = 0,
     note = '',
     createdAt = new Date().getTime(),
-    updatedAt = new Date().getTime()
+    updatedAt = new Date().getTime(),
   }) {
     this.id = id;
     this.index = index;
@@ -34,7 +34,7 @@ export default class TaskModel {
       elapsedTime: this.elapsedTime,
       note: this.note,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      updatedAt: this.updatedAt,
     };
   }
 }

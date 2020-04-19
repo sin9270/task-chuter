@@ -35,8 +35,8 @@ const activeTaskSlice = createSlice({
     addLog: (state, action) => {
       const log = action.payload;
       state.lastLog = log;
-    }
-  }
+    },
+  },
 });
 
 export default activeTaskSlice;
@@ -71,7 +71,7 @@ export const activeTaskModule = {
       const updatedTask = {
         ...task,
         elapsedTime: task.elapsedTime + (currentTime - task.updatedAt),
-        updatedAt: currentTime
+        updatedAt: currentTime,
       };
       return updatedTask;
     });
@@ -92,7 +92,7 @@ export const activeTaskModule = {
     const log = {
       taskId: newTask.id,
       logCode: LOG_STATUS.CREATE,
-      createdAt: new Date().getTime()
+      createdAt: new Date().getTime(),
     };
     await db.logs.add(log);
     dispatch(activeTaskSlice.actions.addLog(log));
@@ -109,13 +109,13 @@ export const activeTaskModule = {
           ...task,
           status: TASK_STATUS.PAUSED,
           elapsedTime: task.elapsedTime + (currentTime - task.updatedAt),
-          updatedAt: currentTime
+          updatedAt: currentTime,
         };
       });
     const startedTask = {
       ...targetTask,
       status: TASK_STATUS.RUNNING,
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     const updatedTasks = [...pausedTasks, startedTask];
     await db.tasks.bulkPut(updatedTasks);
@@ -124,7 +124,7 @@ export const activeTaskModule = {
     const log = {
       taskId: targetTask.id,
       logCode: LOG_STATUS.START,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(activeTaskSlice.actions.addLog(log));
@@ -135,7 +135,7 @@ export const activeTaskModule = {
     const currentTime = new Date().getTime();
     const updatedTask = {
       ...task,
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     // 作成直後のtaskの場合はstateを更新する
     if (task.status === TASK_STATUS.CREATED) {
@@ -156,7 +156,7 @@ export const activeTaskModule = {
       ...task,
       status: TASK_STATUS.PAUSED,
       elapsedTime: task.elapsedTime + (currentTime - task.updatedAt),
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     await db.tasks.put(updatedTask);
     dispatch(activeTaskSlice.actions.update(updatedTask));
@@ -164,7 +164,7 @@ export const activeTaskModule = {
     const log = {
       taskId: task.id,
       logCode: LOG_STATUS.PAUSE,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(activeTaskSlice.actions.addLog(log));
@@ -176,7 +176,7 @@ export const activeTaskModule = {
     const updatedTask = {
       ...task,
       status: TASK_STATUS.DONE,
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     await db.tasks.put(updatedTask);
     dispatch(activeTaskSlice.actions.delete(task));
@@ -184,7 +184,7 @@ export const activeTaskModule = {
     const log = {
       taskId: task.id,
       logCode: LOG_STATUS.DONE,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(activeTaskSlice.actions.addLog(log));
@@ -194,7 +194,7 @@ export const activeTaskModule = {
   copy: (tasks, targetTask) => async dispatch => {
     const copiedTask = new TaskModel({
       title: targetTask.title,
-      note: targetTask.note
+      note: targetTask.note,
     }).toJson();
     dispatch(activeTaskModule.create(tasks, copiedTask));
   },
@@ -205,7 +205,7 @@ export const activeTaskModule = {
     const updatedTask = {
       ...task,
       status: TASK_STATUS.DELETED,
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     await db.tasks.put(updatedTask);
     dispatch(activeTaskSlice.actions.delete(task));
@@ -213,7 +213,7 @@ export const activeTaskModule = {
     const log = {
       taskId: task.id,
       logCode: LOG_STATUS.DELETE,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(activeTaskSlice.actions.addLog(log));
@@ -224,13 +224,13 @@ export const activeTaskModule = {
   undo: ({ taskId }) => async dispatch => {
     const currentTime = new Date().getTime();
     await db.tasks.update(taskId, {
-      status: TASK_STATUS.PAUSED
+      status: TASK_STATUS.PAUSED,
     });
 
     const log = {
       taskId: taskId,
       logCode: LOG_STATUS.UNDO,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(activeTaskSlice.actions.addLog(log));
@@ -248,5 +248,5 @@ export const activeTaskModule = {
     );
     dispatch(activeTaskSlice.actions.replace(reorderedTasks));
     await db.tasks.bulkPut(reorderedTasks);
-  }
+  },
 };

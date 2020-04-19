@@ -21,7 +21,7 @@ const propTypes = {
   load: PropTypes.func.isRequired,
   reorder: PropTypes.func.isRequired,
   create: PropTypes.func.isRequired,
-  undo: PropTypes.func.isRequired
+  undo: PropTypes.func.isRequired,
 };
 
 const ActiveTaskList = props => {

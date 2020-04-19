@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 import {
   combineReducers,
   configureStore,
-  getDefaultMiddleware
+  getDefaultMiddleware,
 } from 'redux-starter-kit';
 import thunk from 'redux-thunk';
 
@@ -16,7 +16,7 @@ import completedTaskSlice from './modules/completedTaskModule';
 const rootReducer = combineReducers({
   router: connectRouter(history),
   activeTask: activeTaskSlice.reducer,
-  completedTask: completedTaskSlice.reducer
+  completedTask: completedTaskSlice.reducer,
 });
 
 const setupStore = () => {
@@ -30,7 +30,7 @@ const setupStore = () => {
 
   const store = configureStore({
     reducer: rootReducer,
-    middleware: middlewares
+    middleware: middlewares,
   });
 
   return store;

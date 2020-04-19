@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 const propTypes = {
   initialTab: PropTypes.string.isRequired,
-  push: PropTypes.func.isRequired
+  push: PropTypes.func.isRequired,
 };
 
 const StyledTab = styled(Tab)`

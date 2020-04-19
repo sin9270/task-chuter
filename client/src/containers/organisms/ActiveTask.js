@@ -21,7 +21,7 @@ const propTypes = {
   pause: PropTypes.func.isRequired,
   done: PropTypes.func.isRequired,
   copy: PropTypes.func.isRequired,
-  delete: PropTypes.func.isRequired
+  delete: PropTypes.func.isRequired,
 };
 
 const Div = styled.div`
@@ -92,7 +92,7 @@ const ActiveTask = props => {
           }
           props.update({
             ...props.task,
-            title: newTitle
+            title: newTitle,
           });
         }}
       />
@@ -102,7 +102,7 @@ const ActiveTask = props => {
           ![
             TASK_STATUS.CREATED,
             TASK_STATUS.UPDATED,
-            TASK_STATUS.PAUSED
+            TASK_STATUS.PAUSED,
           ].includes(props.task.status)
         }
         onClick={() => {
@@ -171,7 +171,7 @@ const ActiveTask = props => {
         onBlur={e => {
           props.update({
             ...props.task,
-            note: e.target.value
+            note: e.target.value,
           });
         }}
       />
