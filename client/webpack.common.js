@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'public/')
+    path: path.join(__dirname, 'public/'),
   },
   module: {
     rules: [
@@ -17,12 +17,12 @@ module.exports = {
             options: {
               presets: [
                 ['@babel/preset-env', { modules: false }],
-                '@babel/preset-react'
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  }
+                '@babel/preset-react',
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
 };

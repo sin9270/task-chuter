@@ -20,8 +20,8 @@ const completedTaskSlice = createSlice({
     addLog: (state, action) => {
       const log = action.payload;
       state.lastLog = log;
-    }
-  }
+    },
+  },
 });
 
 export default completedTaskSlice;
@@ -42,7 +42,7 @@ export const completedTaskModule = {
     const updatedTask = {
       ...task,
       status: TASK_STATUS.PAUSED,
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     await db.tasks.put(updatedTask);
     dispatch(completedTaskSlice.actions.delete(task.id));
@@ -50,7 +50,7 @@ export const completedTaskModule = {
     const log = {
       taskId: task.id,
       logCode: LOG_STATUS.DONE,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(completedTaskSlice.actions.addLog(log));
@@ -62,7 +62,7 @@ export const completedTaskModule = {
     const updatedTask = {
       ...task,
       status: TASK_STATUS.DELETED,
-      updatedAt: currentTime
+      updatedAt: currentTime,
     };
     await db.tasks.put(updatedTask);
     dispatch(completedTaskSlice.actions.delete(task.id));
@@ -70,7 +70,7 @@ export const completedTaskModule = {
     const log = {
       taskId: task.id,
       logCode: LOG_STATUS.DELETE,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(completedTaskSlice.actions.addLog(log));
@@ -81,17 +81,17 @@ export const completedTaskModule = {
   undo: ({ taskId }) => async dispatch => {
     const currentTime = new Date().getTime();
     await db.tasks.update(taskId, {
-      status: TASK_STATUS.DONE
+      status: TASK_STATUS.DONE,
     });
 
     const log = {
       taskId: taskId,
       logCode: LOG_STATUS.UNDO,
-      createdAt: currentTime
+      createdAt: currentTime,
     };
     await db.logs.add(log);
     dispatch(completedTaskSlice.actions.addLog(log));
     // stateのみからtaskの一覧を復元しようとすると処理が複雑になってしまうので、DBから取得する
     dispatch(completedTaskModule.load());
-  }
+  },
 };

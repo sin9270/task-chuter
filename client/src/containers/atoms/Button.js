@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const propTypes = {
   children: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 const StyledButton = styled(Button)`

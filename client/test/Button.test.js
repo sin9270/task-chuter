@@ -8,7 +8,7 @@ import Button from '../src/containers/atoms/Button';
 describe('Test Button', () => {
   const testProps = {
     children: 'Test Button',
-    onClick: jest.fn()
+    onClick: jest.fn(),
   };
 
   it('子要素の文字列が表示される', () => {

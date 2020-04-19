@@ -14,7 +14,7 @@ const propTypes = {
   tasks: PropTypes.array.isRequired,
   lastLog: PropTypes.object.isRequired,
   load: PropTypes.func.isRequired,
-  undo: PropTypes.func.isRequired
+  undo: PropTypes.func.isRequired,
 };
 
 const CompletedTaskList = props => {

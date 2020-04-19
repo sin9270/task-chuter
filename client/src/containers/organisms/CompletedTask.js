@@ -11,7 +11,7 @@ import Button from '../atoms/Button';
 const propTypes = {
   task: PropTypes.object.isRequired,
   undone: PropTypes.func.isRequired,
-  delete: PropTypes.func.isRequired
+  delete: PropTypes.func.isRequired,
 };
 
 const Div = styled.div`

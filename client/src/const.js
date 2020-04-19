@@ -6,7 +6,7 @@ export const TASK_STATUS = {
   RUNNING: 2,
   PAUSED: 3,
   DONE: 4,
-  DELETED: 5
+  DELETED: 5,
 };
 
 export const LOG_STATUS = {
@@ -15,5 +15,5 @@ export const LOG_STATUS = {
   PAUSE: 2,
   DONE: 3,
   DELETE: 4,
-  UNDO: 5
+  UNDO: 5,
 };

@@ -34,7 +34,8 @@
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true
+        "singleQuote": true,
+        "arrowParens": "avoid"
       }
     ],
     "node/no-unsupported-features/es-syntax": [
