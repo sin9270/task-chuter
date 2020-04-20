@@ -63,12 +63,14 @@ const ActiveTaskList = props => {
         id="standard-search"
         label="Search for title"
         type="search"
+        defaultValue={props.titleContains}
         onChange={e => props.updateState({ titleContains: e.target.value })}
       />
       <TextField
         id="standard-search"
         label="Search for note"
         type="search"
+        defaultValue={props.noteContains}
         onChange={e => props.updateState({ noteContains: e.target.value })}
       />
       <Button onClick={() => props.create(props.tasks)}>Create</Button>
