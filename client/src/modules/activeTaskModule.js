@@ -1,6 +1,6 @@
 'use strict';
 
-import { createSlice } from 'redux-starter-kit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { LOG_STATUS, TASK_STATUS } from '../const';
 import db from '../db';

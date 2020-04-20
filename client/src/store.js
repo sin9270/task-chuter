@@ -1,12 +1,12 @@
 'use strict';
 
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import logger from 'redux-logger';
 import {
   combineReducers,
   configureStore,
   getDefaultMiddleware,
-} from 'redux-starter-kit';
+} from '@reduxjs/toolkit';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import history from './history';
