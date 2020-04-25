@@ -14,9 +14,9 @@ import Header from '../organisms/header';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,
-  titleContains: PropTypes.string.isRequired,
-  noteContains: PropTypes.string.isRequired,
-  lastLog: PropTypes.object.isRequired,
+  titleContains: PropTypes.string,
+  noteContains: PropTypes.string,
+  lastLog: PropTypes.object,
   updateState: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   reorder: PropTypes.func.isRequired,
