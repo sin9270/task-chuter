@@ -25,8 +25,7 @@ const propTypes = {
 
 const Div = styled.div`
   border: solid 2px;
-  border-color: ${props =>
-    props.task.status === TASK_STATUS.RUNNING ? 'red' : 'black'};
+  border-color: ${props => (props.isRunning ? 'red' : 'black')};
   border-radius: 10px;
   padding: 15px;
 `;
@@ -70,7 +69,7 @@ const ActiveTask = props => {
   }, [props.task.status]);
 
   return (
-    <Div>
+    <Div isRunning={props.task.status === TASK_STATUS.RUNNING}>
       <TextField
         id="standard-basic"
         label="Task Name"
