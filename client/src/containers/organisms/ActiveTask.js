@@ -13,7 +13,7 @@ import Button from '../atoms/Button';
 const propTypes = {
   task: PropTypes.object.isRequired,
   tasks: PropTypes.array.isRequired,
-  isRunning: PropTypes.bool.isRequired,
+  isRunning: PropTypes.bool,
   timers: PropTypes.array.isRequired,
   updateState: PropTypes.func.isRequired,
   update: PropTypes.func.isRequired,
