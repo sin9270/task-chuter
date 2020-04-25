@@ -13,7 +13,6 @@ import Button from '../atoms/Button';
 const propTypes = {
   task: PropTypes.object.isRequired,
   tasks: PropTypes.array.isRequired,
-  isRunning: PropTypes.bool,
   timers: PropTypes.array.isRequired,
   updateState: PropTypes.func.isRequired,
   update: PropTypes.func.isRequired,
@@ -26,7 +25,8 @@ const propTypes = {
 
 const Div = styled.div`
   border: solid 2px;
-  border-color: ${props => (props.isRunning ? 'red' : 'black')};
+  border-color: ${props =>
+    props.task.status === TASK_STATUS.RUNNING ? 'red' : 'black'};
   border-radius: 10px;
   padding: 15px;
 `;
@@ -70,7 +70,7 @@ const ActiveTask = props => {
   }, [props.task.status]);
 
   return (
-    <Div isRunning={props.task.status === TASK_STATUS.RUNNING}>
+    <Div>
       <TextField
         id="standard-basic"
         label="Task Name"
