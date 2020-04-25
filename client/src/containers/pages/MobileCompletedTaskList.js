@@ -1,5 +1,6 @@
 'use strict';
 
+import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -12,7 +13,10 @@ import Header from '../organisms/header';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,
-  lastLog: PropTypes.object.isRequired,
+  titleContains: PropTypes.string,
+  noteContains: PropTypes.string,
+  lastLog: PropTypes.object,
+  updateState: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   undo: PropTypes.func.isRequired,
 };
@@ -22,6 +26,17 @@ const CompletedTaskList = props => {
     props.load();
   }, []);
 
+  const getFilteredTasks = tasks => {
+    const titleContains = props.titleContains || '';
+    const noteContains = props.noteContains || '';
+    const filteredTasks = tasks
+      .filter(task => task.title.includes(titleContains))
+      .filter(task => task.note.includes(noteContains));
+    return filteredTasks;
+  };
+
+  const tasks = getFilteredTasks(props.tasks);
+
   const lastLog = props.lastLog;
   const canUndo = lastLog
     ? [LOG_STATUS.DELETE].includes(lastLog.logCode)
@@ -30,8 +45,20 @@ const CompletedTaskList = props => {
   return (
     <div>
       <Header initialTab="completedTaskList" />
+      <TextField
+        id="mobile-complete-search-title"
+        label="Search for title"
+        type="search"
+        onChange={e => props.updateState({ titleContains: e.target.value })}
+      />
+      <TextField
+        id="mobile-complete-search-note"
+        label="Search for note"
+        type="search"
+        onChange={e => props.updateState({ noteContains: e.target.value })}
+      />
       {canUndo && <Button onClick={() => props.undo(lastLog)}>Undo</Button>}
-      {props.tasks.map(task => (
+      {tasks.map(task => (
         <CompletedTask key={task.id} task={task} />
       ))}
     </div>
