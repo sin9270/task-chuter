@@ -9,6 +9,9 @@ const completedTaskSlice = createSlice({
   name: 'completedTask',
   initialState: { tasks: [] },
   reducers: {
+    updateState: (state, action) => {
+      return { ...state, ...action.payload };
+    },
     replace: (state, action) => {
       const tasks = action.payload;
       state.tasks = tasks;
@@ -27,6 +30,10 @@ const completedTaskSlice = createSlice({
 export default completedTaskSlice;
 
 export const completedTaskModule = {
+  updateState: newState => async dispatch => {
+    dispatch(completedTaskSlice.actions.updateState(newState));
+  },
+
   // 完了したtaskの一覧を取得する
   load: () => async dispatch => {
     const tasks = await db.tasks
