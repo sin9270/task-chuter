@@ -7,10 +7,10 @@ import { Provider } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import ActiveTaskList from './containers/pages/ActiveTaskList';
-import CompletedTaskList from './containers/pages/CompletedTaskList';
-import MobileActiveTaskList from './containers/pages/MobileActiveTaskList';
-import MobileCompletedTaskList from './containers/pages/MobileCompletedTaskList';
+import ActiveTaskList from './components/pages/ActiveTaskList';
+import CompletedTaskList from './components/pages/CompletedTaskList';
+import MobileActiveTaskList from './components/pages/MobileActiveTaskList';
+import MobileCompletedTaskList from './components/pages/MobileCompletedTaskList';
 import history from './history';
 import setupStore from './store';
 

@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import Button from '../src/containers/atoms/Button';
+import Button from '../src/components/atoms/Button';
 
 describe('Test Button', () => {
   const testProps = {
