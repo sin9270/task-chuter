@@ -50,6 +50,12 @@
         "allowModules": ["enzyme", "enzyme-adapter-react-16"]
       }
     ],
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": ["html-webpack-plugin", "clean-webpack-plugin"]
+      }
+    ],
     "simple-import-sort/sort": "error"
   },
   "settings": {
