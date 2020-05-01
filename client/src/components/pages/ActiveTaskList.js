@@ -10,7 +10,7 @@ import { LOG_STATUS } from '../../const';
 import { activeTaskModule } from '../../modules/activeTaskModule';
 import Button from '../atoms/Button';
 import ActiveTask from '../organisms/ActiveTask';
-import Header from '../organisms/header';
+import Header from '../organisms/Header';
 
 const propTypes = {
   tasks: PropTypes.array.isRequired,
