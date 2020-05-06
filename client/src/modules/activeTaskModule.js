@@ -1,5 +1,3 @@
-'use strict';
-
 import { createSlice } from '@reduxjs/toolkit';
 
 import { LOG_STATUS, TASK_STATUS } from '../const';

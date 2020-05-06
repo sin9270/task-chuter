@@ -1,5 +1,3 @@
-'use strict';
-
 export const TASK_STATUS = {
   CREATED: 0,
   UPDATED: 1,

@@ -1,5 +1,3 @@
-'use strict';
-
 import { StylesProvider } from '@material-ui/styles';
 import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';

@@ -1,5 +1,3 @@
-'use strict';
-
 import { shallow } from 'enzyme';
 import React from 'react';
 
