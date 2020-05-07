@@ -1,5 +1,3 @@
-'use strict';
-
 import crypto from 'crypto';
 
 import { TASK_STATUS } from '../const';

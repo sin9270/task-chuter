@@ -1,5 +1,3 @@
-'use strict';
-
 const CACHE_VERSION = 1;
 const CACHE_NAME = `SimpleTaskChute-v${CACHE_VERSION}`;
 const contentToCache = ['./index.html', './bundle.js'];

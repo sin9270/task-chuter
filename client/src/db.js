@@ -1,5 +1,3 @@
-'use strict';
-
 import Dexie from 'dexie';
 
 const db = new Dexie('AppDatabase');

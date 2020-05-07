@@ -1,5 +1,3 @@
-'use strict';
-
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
