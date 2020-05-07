@@ -1,4 +1,3 @@
-import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
@@ -7,6 +6,7 @@ import { connect } from 'react-redux';
 import { LOG_STATUS } from '../../const';
 import { activeTaskModule } from '../../modules/activeTaskModule';
 import Button from '../atoms/Button';
+import SearchBox from '../atoms/SearchBox';
 import ActiveTask from '../organisms/ActiveTask';
 import Header from '../organisms/Header';
 
@@ -57,17 +57,13 @@ const ActiveTaskList = props => {
   return (
     <div>
       <Header initialTab="activeTaskList" />
-      <TextField
-        id="standard-search"
+      <SearchBox
         label="Search for title"
-        type="search"
         defaultValue={props.titleContains}
         onChange={e => props.updateState({ titleContains: e.target.value })}
       />
-      <TextField
-        id="standard-search"
+      <SearchBox
         label="Search for note"
-        type="search"
         defaultValue={props.noteContains}
         onChange={e => props.updateState({ noteContains: e.target.value })}
       />

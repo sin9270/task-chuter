@@ -1,4 +1,3 @@
-import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -6,6 +5,7 @@ import { connect } from 'react-redux';
 import { LOG_STATUS } from '../../const';
 import { completedTaskModule } from '../../modules/completedTaskModule';
 import Button from '../atoms/Button';
+import SearchBox from '../atoms/SearchBox';
 import CompletedTask from '../organisms/CompletedTask';
 import Header from '../organisms/Header';
 
@@ -43,21 +43,16 @@ const CompletedTaskList = props => {
   return (
     <div>
       <Header initialTab="completedTaskList" />
-      <TextField
-        id="complete-search-title"
+      <SearchBox
         label="Search for title"
-        type="search"
         defaultValue={props.titleContains}
         onChange={e => props.updateState({ titleContains: e.target.value })}
       />
-      <TextField
-        id="complete-search-note"
+      <SearchBox
         label="Search for note"
-        type="search"
         defaultValue={props.noteContains}
         onChange={e => props.updateState({ noteContains: e.target.value })}
       />
-
       {canUndo && <Button onClick={() => props.undo(lastLog)}>Undo</Button>}
       {tasks.map(task => (
         <CompletedTask key={task.id} task={task} />
