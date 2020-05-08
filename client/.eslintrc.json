@@ -53,7 +53,7 @@
     "node/no-unpublished-require": [
       "error",
       {
-        "allowModules": ["html-webpack-plugin", "clean-webpack-plugin"]
+        "allowModules": ["html-webpack-plugin", "clean-webpack-plugin", "webpack-merge"]
       }
     ],
     "simple-import-sort/sort": "error"
