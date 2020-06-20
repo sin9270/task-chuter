@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from 'styled-components';
 
 const propTypes = {
@@ -9,11 +9,17 @@ const propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
+interface Props {
+  children: string;
+  disabled?: boolean;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 const StyledButton = styled(Button)`
   margin: 5px;
 `;
 
-const MainButton = props => {
+const MainButton: React.FC<Props> = props => {
   return (
     <StyledButton
       variant="contained"
