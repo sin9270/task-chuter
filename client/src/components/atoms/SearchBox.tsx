@@ -1,6 +1,6 @@
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from 'styled-components';
 
 const propTypes = {
@@ -9,11 +9,17 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+interface Props {
+  label: string;
+  defaultValue?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 const StyledTextField = styled(TextField)`
   margin: 5px;
 `;
 
-const SearchBox = props => {
+const SearchBox: React.FC<Props> = props => {
   return (
     <StyledTextField
       type="search"
