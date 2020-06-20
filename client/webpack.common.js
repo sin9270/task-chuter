@@ -31,6 +31,13 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.tsx$/,
+        use: 'ts-loader',
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx', '.json'],
   },
 };

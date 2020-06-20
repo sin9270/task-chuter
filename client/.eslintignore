@@ -1,3 +1,6 @@
 node_modules/
 public/index.html
 public/bundle.*.js
+webpack.common.js
+webpack.dev.js
+webpack.prod.js
